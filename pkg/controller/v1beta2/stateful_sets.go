@@ -153,6 +153,11 @@ func (hc *HabitatController) newStatefulSet(h *habv1beta1.Habitat) (*appsv1beta2
 	spec := &base.Spec
 	tSpec := &spec.Template.Spec
 
+	// If we definied a serviceAccountName, add it to the pod definition
+	if h.Spec.ServiceAccountName != nil {
+		tSpec.ServiceAccountName = *h.Spec.ServiceAccountName
+	}
+
 	// If we have a secret name present we should mount that secret.
 	if hs.Service.ConfigSecretName != nil {
 		// Let's make sure our secret is there before mounting it.
