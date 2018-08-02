@@ -26,12 +26,12 @@ e2e:
 	$(eval KUBECONFIG_PATH := $(shell mktemp --tmpdir operator-e2e.XXXXXXX))
 	kubectl config view --minify --flatten > $(KUBECONFIG_PATH)
 	@if test 'x$(TESTIMAGE)' = 'x'; then echo "TESTIMAGE must be passed."; exit 1; fi
-	go test -v ./test/e2e/... --image "$(TESTIMAGE)" --kubeconfig $(KUBECONFIG_PATH) --ip "$(IP)"
+	go test -timeout 86400s -v ./test/e2e/... --image "$(TESTIMAGE)" --kubeconfig $(KUBECONFIG_PATH) --ip "$(IP)"
 
 clean-test:
-	kubectl delete namespace testing-v1beta1
-	kubectl delete clusterrolebinding habitat-operator-v1beta1
-	kubectl delete clusterrole habitat-operator-v1beta1
+	-kubectl delete namespace testing-v1beta1
+	-kubectl delete clusterrolebinding habitat-operator-v1beta1
+	-kubectl delete clusterrole habitat-operator-v1beta1
 
 update-version:
 	find examples -name "*.yml" -type f \
