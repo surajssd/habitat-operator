@@ -54,7 +54,7 @@ function read_rules
 
 readonly example_path='examples/rbac/rbac.yml'
 readonly chart_path='helm/habitat-operator/templates/clusterrole.yaml'
-readonly test_path='test/e2e/v1beta1/resources/operator/cluster-role.yml'
+readonly test_path='test/e2e/v1beta2/resources/operator/cluster-role.yml'
 
 readonly example_rules="$(read_rules "${dir}/../${example_path}")"
 readonly chart_rules="$(read_rules "${dir}/../${chart_path}")"

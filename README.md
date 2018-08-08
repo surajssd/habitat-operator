@@ -11,7 +11,7 @@ The Habitat operator is a Kubernetes controller designed to solve running and au
 
 To learn more about Habitat, please visit the [Habitat website](https://www.habitat.sh/).
 
-For a more detailed description of the Habitat type have a look [here](https://github.com/habitat-sh/habitat-operator/blob/master/pkg/apis/habitat/v1beta1/types.go).
+For a more detailed description of the Habitat type have a look [here](https://github.com/habitat-sh/habitat-operator/blob/master/pkg/apis/habitat/v1beta2/types.go).
 
 ## Prerequisites
 
@@ -113,7 +113,7 @@ Our current setup does not allow e2e tests to run locally. It is best run on a [
 
 ### Code generation
 
-If you change one of the types in `pkg/apis/habitat/v1beta1/types.go`, run the code generation script with:
+If you change one of the types in `pkg/apis/habitat/v1beta2/types.go`, run the code generation script with:
 
     make codegen
 
