@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package v1beta1
+package v1beta2
 
 import (
 	corev1 "k8s.io/api/core/v1"
@@ -45,7 +45,7 @@ type Habitat struct {
 	// multiple versions of a CRD.  It encodes the actual version of the type, so
 	// that controllers can decide whether to discard an object if the version
 	// doesn't match.
-	// When absent, it defaults to v1beta1.
+	// When absent, it defaults to v1beta2.
 	// +optional
 	CustomVersion *string `json:"customVersion,omitempty"`
 }
