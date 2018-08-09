@@ -298,8 +298,13 @@ func TestV1beta1(t *testing.T) {
 	}
 
 	// Check that a `Deployment` has been created, rather than a `StatefulSet`.
-	if _, err := framework.KubeClient.AppsV1beta1().Deployments(utils.TestNs).Get(h.Name, metav1.GetOptions{}); err != nil {
+	deployment, err := framework.KubeClient.AppsV1beta1().Deployments(utils.TestNs).Get(h.Name, metav1.GetOptions{})
+	if err != nil {
 		t.Fatal("Could not retrieve Deployment")
+	}
+	// deployment should have label about the topology
+	if _, ok := deployment.Labels[habv1beta1.HabitatTopologyLabel]; !ok {
+		t.Fatalf("Deployment has no label: %q", habv1beta1.HabitatTopologyLabel)
 	}
 
 	if _, err := framework.KubeClient.AppsV1beta1().StatefulSets(utils.TestNs).Get(h.Name, metav1.GetOptions{}); err == nil {
