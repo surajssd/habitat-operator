@@ -18,7 +18,7 @@ import (
 	"reflect"
 	"testing"
 
-	habv1beta2 "github.com/habitat-sh/habitat-operator/pkg/apis/habitat/v1beta2"
+	habv1beta1 "github.com/habitat-sh/habitat-operator/pkg/apis/habitat/v1beta1"
 	apiv1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
@@ -79,7 +79,7 @@ func Test_habitatKeyFromLabeledResource(t *testing.T) {
 func Test_newConfigMap(t *testing.T) {
 	type args struct {
 		ip string
-		h  *habv1beta2.Habitat
+		h  *habv1beta1.Habitat
 	}
 	// only one code path so only one test
 	namespace := "myproject"
@@ -96,7 +96,7 @@ func Test_newConfigMap(t *testing.T) {
 			name: "working test case",
 			args: args{
 				ip: ip,
-				h: &habv1beta2.Habitat{
+				h: &habv1beta1.Habitat{
 					ObjectMeta: metav1.ObjectMeta{
 						Name:      name,
 						Namespace: namespace,
@@ -113,7 +113,7 @@ func Test_newConfigMap(t *testing.T) {
 					},
 					OwnerReferences: []metav1.OwnerReference{
 						metav1.OwnerReference{
-							APIVersion: "habitat.sh/v1beta2",
+							APIVersion: "habitat.sh/v1beta1",
 							Kind:       "Habitat",
 							Name:       name,
 							UID:        uid,

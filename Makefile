@@ -29,9 +29,9 @@ e2e:
 	go test -v ./test/e2e/... --image "$(TESTIMAGE)" --kubeconfig $(KUBECONFIG_PATH) --ip "$(IP)"
 
 clean-test:
-	-kubectl delete namespace testing-v1beta2
-	-kubectl delete clusterrolebinding habitat-operator-v1beta2
-	-kubectl delete clusterrole habitat-operator-v1beta2
+	-kubectl delete namespace testing-v1beta1
+	-kubectl delete clusterrolebinding habitat-operator-v1beta1
+	-kubectl delete clusterrole habitat-operator-v1beta1
 
 update-version:
 	find examples -name "*.yml" -type f \
@@ -53,8 +53,8 @@ update-version:
 	sed \
 		-i.bak \
 		-e "s/\(habitat-operator:v\).*/\1$$(cat VERSION)/g" \
-		test/e2e/v1beta2/resources/operator/deployment.yml
-	rm -f test/e2e/v1beta2/resources/operator/deployment.yml.bak
+		test/e2e/v1beta1/resources/operator/deployment.yml
+	rm -f test/e2e/v1beta1/resources/operator/deployment.yml.bak
 	sed \
 		-i.bak \
 		-e 's/\(`\*: cut \)[.[:digit:]]*\( release`\)/\1'"$$(cat VERSION)"'\2/' \
